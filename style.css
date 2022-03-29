@@ -1,0 +1,13 @@
+/*
+Theme Name: Yass Theme
+
+*/
+header{
+    background-color: red;
+    width: 100%;
+}
+
+footer{
+    background-color: black ;
+    color: white;
+}
