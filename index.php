@@ -12,5 +12,10 @@
 <!--        <h1>Pas d'articles</h1>-->
 <!--    --><?php //endif; ?>
 
+    <aside class="site__sidebar">
+        <ul>
+			<?php dynamic_sidebar( 'footer-sidebar' ); ?>
+        </ul>
+    </aside>
 
 <?php get_footer()?>

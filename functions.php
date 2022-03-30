@@ -48,6 +48,28 @@
 		'footer' => 'Bas de page',
 	) );
 
+	//Création de sidebar
+	//Il faut a minima indiquer son nom et son identifiant (id, name)
+	//Le reste permet de modifier les balises html (de base est du li)
+	//donc a mettre dans une balise UL
+	register_sidebar( array(
+		'id' => 'blog-sidebar',
+		'name' => 'blog',
+//		'before_widget'  => '<div class="site__sidebar__widget %2$s">',
+//		'after_widget'  => '</div>',
+//		'before_title' => '<p class="site__sidebar__widget__title">',
+//		'after_title' => '</p>',
+	) );
+
+	register_sidebar( array(
+		'id' => 'footer-sidebar',
+		'name' => 'footer',
+//		'before_widget'  => '<div class="site__sidebar__widget %2$s">',
+//		'after_widget'  => '</div>',
+//		'before_title' => '<p class="site__sidebar__widget__title">',
+//		'after_title' => '</p>',
+	) );
+
 
 	/*-----------------------ancien cours youtube dessous--------------------------*/
 	function yasstheme_supports(){

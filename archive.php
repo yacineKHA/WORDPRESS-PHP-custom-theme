@@ -53,4 +53,13 @@
     </article>
 
 <?php endwhile; endif; ?>
+    <div>
+        <aside class="site__sidebar">
+            <ul>
+			    <?php dynamic_sidebar( 'blog-sidebar' ); ?>
+            </ul>
+        </aside>
+    </div>
+
+
 <?php get_footer(); ?>
