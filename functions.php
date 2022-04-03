@@ -70,6 +70,80 @@
 //		'after_title' => '</p>',
 	) );
 
+	function capitaine_register_post_types() {
+		//La déclaration de nos Custom Post Types et Taxonomies ira ici
+		//CPT Portfolio
+		//Dans le tableau $labels vous allez pouvoir définir les phrases qui apparaissent
+		//dans l’administration de WordPress. Si vous ne mettez rien, le CMS utilisera les intitulés par défaut comme
+		//«Ajouter une publication, modifier la publication, supprimer la publication… ».
+		$labels = array(
+			'name' => 'Portfolio',
+			'all_items' => 'Tous les projets',  // affiché dans le sous menu
+			'singular_name' => 'Projet',
+			'add_new_item' => 'Ajouter un projet',
+			'edit_item' => 'Modifier le projet',
+			'menu_name' => 'Portfolio' // Nom du menu dans wp-admin
+		);
+
+		$args = array(
+			'labels' => $labels,
+			'public' => true, //Pour le voir dans l'interface, forcément true.
+			'show_in_rest' => true, // Permet créer un CPT avec editeur Gutenberg (mettre true)
+			'has_archive' => true,
+			//'has_archive' -- Ce réglage est important. C’est là où vous dites si vous voulez que le CPT se comporte comme des articles, c’est à dire avec une archive et des singles, ou comme des pages (hiérarchique). Mais comme je le disais dans le cours précédent, c’est très rare qu’on l’utilise
+			//(si on veut faire une documentation par exemple).
+			//J’ai donc passé has_archive à true.
+			'supports' => array( 'title', 'editor','thumbnail' ), //Les fonctionnalités supportées
+			//(title, editor, author, thumbnail, excerpt, comments, revisions, custon-fields, page-attributes, post-formats)
+			'menu_position' => 5, //Endroit ou apparait le CPT
+			//5 : Le CPT apparait juste après Articles ;
+			//10 : Sous Médias ;
+			//20 : Sous Pages ;
+			//65 : Sous Extensions ;
+			//70 : Sous Utilisateurs ;
+			//80 : Sous Réglages ;
+			//100 : Tout en bas.
+			'menu_icon' => 'dashicons-admin-customizer', //icon du CPT, pour les distinguer
+			//Comme vous le voyez vous n’êtes pas obligés de tout activer, afin d’alléger au maximum l’interface. Il m’est déjà arrivé de créer des CPT sans l’éditeur visuel
+			//(car j’y ajoutais mes propres champs). On verra ça un peu plus tard.
+		);
+
+
+		register_post_type( 'portfolio', $args );
+		//N’oubliez pas d’aller systématiquement enregistrer la structure des Permaliens
+		// dans WordPress lorsque vous avez déclaré un nouveau Custom Post Type
+		// ou une taxonomie, afin d’éviter des erreurs 404.
+		//Réglage/permaliens mettre juste enregistrer a chaque fois
+
+		//-------------------------------------------------------------//
+		//------------------ Déclaration de la Taxonomie ----------------//
+		//-------------------------------------------------------------//
+		$labels = array(
+			'name' => 'Type de projets',
+			'new_item_name' => 'Nom du nouveau Projet',
+			'parent_item' => 'Type de projet parent',
+		);
+
+		$args = array(
+			'labels' => $labels,
+			'public' => true,
+			'show_in_rest' => true,
+			'hierarchical' => true,
+			//C’est le paramètre le plus important. Souhaitez-vous
+			//que votre taxonomie soit hiérarchique, comme les catégories, avec
+			//des termes prédéfinis à l’avance, où plutôt volatile,
+			//comme les étiquettes ? D’expérience, c’est le mode hiérarchique
+			// que l’on choisit dans une grande majorité des cas.
+		);
+
+		register_taxonomy( 'type-projet', 'portfolio', $args);
+		// Assigner à plusieurs CPT
+		//register_taxonomy( 'type-projet', array( 'portfolio', 'autre' ), $args );
+	}
+
+	add_action( 'init', 'capitaine_register_post_types' ); // Le hook init lance la fonction
+
+
 
 	/*-----------------------ancien cours youtube dessous--------------------------*/
 	function yasstheme_supports(){
