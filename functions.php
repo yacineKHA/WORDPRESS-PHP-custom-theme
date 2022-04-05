@@ -144,6 +144,18 @@
 	add_action( 'init', 'capitaine_register_post_types' ); // Le hook init lance la fonction
 
 
+//	function  yasstheme_assets() {
+//
+//		// …
+//
+//		// Charger notre script
+//		wp_enqueue_script( 'yassscript', get_template_directory_uri() . '/js/script.js', array( 'jquery' ), false,true);
+//
+//		// Envoyer une variable de PHP à JS proprement
+//		wp_localize_script( 'yassscript', 'yasstheme', [ ajaxurl => admin_url( 'admin-ajax.php' ) ] );
+//
+//	}
+//	add_action( 'wp_enqueue_scripts', 'yasstheme_assets' );
 
 	/*-----------------------ancien cours youtube dessous--------------------------*/
 	function yasstheme_supports(){
